@@ -11,11 +11,58 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
+    );
+  }
+}
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/pattern.png'),
+          repeat: ImageRepeat.repeat,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
         body: SafeArea(
-            child: Center(
-          child: Text('Initial Application'),
-        )),
+          child: Stack(
+            alignment: AlignmentDirectional.bottomCenter,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 120),
+                child: Center(
+                  child: Image(
+                    image: AssetImage('assets/images/startlogo.png'),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 30,
+                child: Column(
+                  children: [
+                    Text(
+                      'From',
+                      style: TextStyle(color: Colors.white.withOpacity(0.3)),
+                    ),
+                    Text(
+                      'ExpertFlutter',
+                      style: TextStyle(
+                        color: Color(0xFF55B9F7),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
