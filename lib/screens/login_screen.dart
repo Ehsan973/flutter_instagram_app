@@ -8,6 +8,17 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  FocusNode neghahban = FocusNode();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    neghahban.addListener(() {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ]),
       ),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: Stack(
@@ -74,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 SizedBox(
                   width: double.infinity,
-                  height: 50,
+                  height: 44,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,12 +100,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 34,
+                  height: 30,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 32),
                   child: TextField(
+                    focusNode: neghahban,
                     decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                      labelText: 'Email',
+                      labelStyle: TextStyle(
+                        fontFamily: 'GM',
+                        fontSize: 20,
+                        color: neghahban.hasFocus
+                            ? Color(0xFFF35383)
+                            : Color(0xFFC5C5C5),
+                      ),
+                      // floatingLabelStyle: TextStyle(
+                      //   color: Color(0xFFF35383),
+                      // ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           width: 3,
@@ -111,11 +137,88 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 32),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                      labelText: 'Password',
+                      labelStyle: TextStyle(
+                        fontFamily: 'GM',
+                        fontSize: 20,
+                        color: Color(0xFFC5C5C5),
+                      ),
+                      floatingLabelStyle: TextStyle(
+                        color: Color(0xFFF35383),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: Color(0xFFC5C5C5),
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: Color(0xFFF35383),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 28,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(130, 46),
+                  ),
+                  child: Text('sign in'),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an account? / ",
+                        style: TextStyle(
+                          fontFamily: 'GB',
+                          color: Colors.grey[700],
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        'Sign up',
+                        style: TextStyle(
+                          fontFamily: 'GB',
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    neghahban.dispose();
+
+    super.dispose();
   }
 }
