@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_app/screens/share_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,6 +37,28 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            ElevatedButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    barrierColor: Colors.transparent,
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return DraggableScrollableSheet(
+                        initialChildSize: 0.4,
+                        minChildSize: 0.3,
+                        maxChildSize: 0.7,
+                        builder: (context, controller) {
+                          return ShareBottomSheet(
+                            controller: controller,
+                          );
+                        },
+                      );
+                    },
+                  );
+                },
+                child: Text('Open Bottomsheet')),
             Padding(
               padding: EdgeInsets.only(
                 top: 12,
