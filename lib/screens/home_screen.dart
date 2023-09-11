@@ -34,10 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       backgroundColor: Color(0xFF1C1F2E),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ElevatedButton(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
                     backgroundColor: Colors.transparent,
@@ -45,62 +46,121 @@ class _HomeScreenState extends State<HomeScreen> {
                     isScrollControlled: true,
                     context: context,
                     builder: (BuildContext context) {
-                      return DraggableScrollableSheet(
-                        initialChildSize: 0.4,
-                        minChildSize: 0.3,
-                        maxChildSize: 0.7,
-                        builder: (context, controller) {
-                          return ShareBottomSheet(
-                            controller: controller,
-                          );
-                        },
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom,
+                        ),
+                        child: DraggableScrollableSheet(
+                          initialChildSize: 0.4,
+                          minChildSize: 0.3,
+                          maxChildSize: 0.7,
+                          builder: (context, controller) {
+                            return ShareBottomSheet(
+                              controller: controller,
+                            );
+                          },
+                        ),
                       );
                     },
                   );
                 },
-                child: Text('Open Bottomsheet')),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 12,
-                bottom: 12,
-              ),
-              child: SizedBox(
-                height: 100,
-                child: _getStoryList(),
+                child: Text('Open Bottomsheet'),
               ),
             ),
-            _getPostList(),
+            SliverToBoxAdapter(
+              child: _getStoryList(),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 16,
+                    ),
+                    child: Column(
+                      children: [
+                        _getPostHeader(),
+                        SizedBox(
+                          height: 22,
+                        ),
+                        _getPostBody(),
+                      ],
+                    ),
+                  );
+                },
+                childCount: 9,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Container _getStoryList() {
-    return Container(
-      height: 88,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return index == 0
-              ? _getAddStoryBox()
-              : Column(
-                  children: [
-                    _getStoryBox(58),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Test',
-                      style: TextStyle(
-                        fontFamily: 'GM',
-                        fontSize: 10,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                );
-        },
+  Column _getContent(BuildContext context) {
+    return Column(
+      children: [
+        ElevatedButton(
+            onPressed: () {
+              showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                barrierColor: Colors.transparent,
+                isScrollControlled: true,
+                context: context,
+                builder: (BuildContext context) {
+                  return DraggableScrollableSheet(
+                    initialChildSize: 0.4,
+                    minChildSize: 0.3,
+                    maxChildSize: 0.7,
+                    builder: (context, controller) {
+                      return ShareBottomSheet(
+                        controller: controller,
+                      );
+                    },
+                  );
+                },
+              );
+            },
+            child: Text('Open Bottomsheet')),
+        _getPostList(),
+      ],
+    );
+  }
+
+  Widget _getStoryList() {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 12,
+        bottom: 12,
+      ),
+      child: SizedBox(
+        height: 100,
+        child: Container(
+          height: 88,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return index == 0
+                  ? _getAddStoryBox()
+                  : Column(
+                      children: [
+                        _getStoryBox(58),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Test',
+                          style: TextStyle(
+                            fontFamily: 'GM',
+                            fontSize: 10,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    );
+            },
+          ),
+        ),
       ),
     );
   }

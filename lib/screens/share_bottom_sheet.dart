@@ -28,7 +28,7 @@ class ShareBottomSheet extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: _getContent(),
+                child: _getSliverContent(),
               ),
             ],
           ),
@@ -37,7 +37,7 @@ class ShareBottomSheet extends StatelessWidget {
     );
   }
 
-  GridView _getContent() {
+  Widget _getContent() {
     return GridView.builder(
       controller: controller,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -67,6 +67,119 @@ class ShareBottomSheet extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  Widget _getSliverContent() {
+    return CustomScrollView(
+      controller: controller,
+      slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(
+                  top: 10,
+                  bottom: 22,
+                ),
+                width: 67,
+                height: 5,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(100),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Share',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontFamily: 'GB',
+                      color: Colors.white,
+                    ),
+                  ),
+                  Image.asset('assets/images/icon_share_bottomsheet.png'),
+                ],
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              Container(
+                width: double.infinity,
+                height: 46,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(13),
+                  color: Colors.white.withOpacity(0.4),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Row(
+                    children: [
+                      Image.asset('assets/images/icon_search.png'),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            hintText: 'Search...',
+                            hintStyle: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'GB',
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 32,
+              ),
+            ],
+          ),
+        ),
+        SliverGrid(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              return Column(
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Image.asset('assets/images/profile.png'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Your Story',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            mainAxisSpacing: 20,
+            // crossAxisSpacing: 20,
+          ),
+        )
+      ],
     );
   }
 }
