@@ -5,6 +5,7 @@ import 'package:instagram_app/screens/login_screen.dart';
 import 'package:instagram_app/screens/add_content_screen.dart';
 import 'package:instagram_app/screens/search_screen.dart';
 import 'package:instagram_app/screens/switch_account_screen.dart';
+import 'package:instagram_app/screens/user_profile_sceen.dart';
 
 void main() {
   runApp(const Application());
@@ -37,7 +38,7 @@ class Application extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: ActivityScreen(),
+      home: UserProfileScreen(),
     );
   }
 }
