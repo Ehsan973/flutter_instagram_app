@@ -3,6 +3,7 @@ import 'package:instagram_app/screens/activity_screen.dart';
 import 'package:instagram_app/screens/home_screen.dart';
 import 'package:instagram_app/screens/login_screen.dart';
 import 'package:instagram_app/screens/add_content_screen.dart';
+import 'package:instagram_app/screens/main_screen.dart';
 import 'package:instagram_app/screens/search_screen.dart';
 import 'package:instagram_app/screens/switch_account_screen.dart';
 import 'package:instagram_app/screens/user_profile_sceen.dart';
@@ -38,7 +39,7 @@ class Application extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: UserProfileScreen(),
+      home: MainScreen(),
     );
   }
 }

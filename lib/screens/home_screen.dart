@@ -271,7 +271,35 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      Image.asset('assets/images/icon_share.png'),
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            backgroundColor: Colors.transparent,
+                            barrierColor: Colors.transparent,
+                            isScrollControlled: true,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                  bottom:
+                                      MediaQuery.of(context).viewInsets.bottom,
+                                ),
+                                child: DraggableScrollableSheet(
+                                  initialChildSize: 0.4,
+                                  minChildSize: 0.3,
+                                  maxChildSize: 0.7,
+                                  builder: (context, controller) {
+                                    return ShareBottomSheet(
+                                      controller: controller,
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Image.asset('assets/images/icon_share.png'),
+                      ),
                       Image.asset('assets/images/icon_save.png'),
                     ],
                   ),

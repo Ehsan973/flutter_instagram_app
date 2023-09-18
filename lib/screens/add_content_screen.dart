@@ -14,60 +14,58 @@ class _AddContentScreenState extends State<AddContentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF1C1F2E),
-      body: SafeArea(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            _getWholeScrollingPart(),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.only(bottom: 20),
-              decoration: BoxDecoration(
-                color: Color(0xff272B40),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 18,
-                  vertical: 10,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Draft',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'GB',
-                      ),
-                    ),
-                    Text(
-                      'Gallary',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'GB',
-                      ),
-                    ),
-                    Text(
-                      'Take',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'GB',
-                      ),
-                    ),
-                  ],
-                ),
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          _getWholeScrollingPart(),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.only(bottom: 55),
+            decoration: BoxDecoration(
+              color: Color(0xff272B40),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
               ),
             ),
-          ],
-        ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 18,
+                vertical: 10,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Draft',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontFamily: 'GB',
+                    ),
+                  ),
+                  Text(
+                    'Gallary',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontFamily: 'GB',
+                    ),
+                  ),
+                  Text(
+                    'Take',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontFamily: 'GB',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -112,7 +110,7 @@ class _AddContentScreenState extends State<AddContentScreen> {
         ),
         SliverPadding(
           padding: EdgeInsets.only(
-            bottom: 65,
+            bottom: 100,
           ),
         ),
       ],
